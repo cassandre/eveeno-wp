@@ -11,7 +11,7 @@ Alles was Sie dazu brauchen, ist der Name ihres Events (steht in der URL) und di
 
 ####Beispiel:####
 ```
-[eveeno name="mein-event" width: 95% height: 1000px]
+[eveeno name="mein-event" width="95%" height="1000px"]
 ```
 
 #### Weitere Informationen: ####
@@ -25,7 +25,7 @@ All you need is the name of your event (as posted in the eveeno url) and the wid
 
 ####Example:####
 ```
-[eveeno name="my-event" width: 95% height: 1000px]
+[eveeno name="my-event" width="95%" height="1000px"]
 ```
 
 #### Additional Information
