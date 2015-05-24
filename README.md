@@ -17,7 +17,7 @@ Website: <a href="http://barbara-bothe.de">http://barbara-bothe.de</a>
 Lizenz: <a href="http://www.gnu.org/licenses/gpl">GNU General Public License, Version 3</a> (GNUGPLv3)
 
 ###EN###
-Include registration forms from <a href="https://eveeno.com">eveeno ticketing</a> in your WordPress site simply by adding a shortcode.
+Embed registration forms from <a href="https://eveeno.com">eveeno ticketing</a> in your WordPress site simply by adding a shortcode.
 All you need is the name of your event (as posted in the eveeno url) and the width and height.
 
 ####Example:####
