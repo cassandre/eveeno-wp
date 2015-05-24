@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Eveeno v1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-05-24 09:24:33+0200\n"
+"PO-Revision-Date: 2015-05-24 10:53:56+0200\n"
 "Last-Translator: zo95zofo <barbara.bothe@fau.de>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,18 +36,23 @@ msgstr ""
 "Your WordPress version is %s. Please upgrade at least to WordPress version \\\"\n"
 "\\\"%s."
 
-#: eveeno.php:172
+#: eveeno.php:173
 #@ eveeno
 msgid "Eveeno Anmeldung"
 msgstr "Eveeno Registration"
 
-#: eveeno.php:173
+#: eveeno.php:174
 #@ eveeno
 msgid "Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: "
 msgstr "Your browser cannot display embedded frames. You may access this site directly at: "
 
-#: eveeno.php:174
+#: eveeno.php:175
 #@ eveeno
 msgid "Anmeldung"
 msgstr "Registration"
+
+#: eveeno.php:177
+#@ eveeno
+msgid "Erstellt mit"
+msgstr "Made with"
 

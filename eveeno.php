@@ -166,15 +166,17 @@ class Eveeno {
             $width = sanitize_text_field($width);
             $height = sanitize_text_field($height);
             
-            echo "<iframe src=\"https://eveeno.com/$name?format=embedded\""
+            $output = '';
+            $output .=  "<iframe src=\"https://eveeno.com/$name?format=embedded\""
                         . "width=\"$width\"" 
                         . "height=\"$height\"" 
                         . "name=\"" . __('Eveeno Anmeldung', Eveeno::textdomain) . "\">"; 
-            echo "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', self::textdomain)
+            $output .= "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', Eveeno::textdomain)
                         . "<a href=\"https://eveeno.com/$name\">" . __('Anmeldung', Eveeno::textdomain) . "</a>" . "</p>";
-            echo "</iframe>";
-            echo "<p><small><a href=\"https://eveeno.com\">eveeno ticketing</a></small></p>";
+            $output .= "</iframe>";
+            $output .= "<p><small>".__('Erstellt mit', Eveeno::textdomain)." <a href=\"https://eveeno.com\" target=\"_blank\">eveeno ticketing</a></small></p>";
             
+            return $output;
         }
 
         add_shortcode('eveeno', 'eveeno_shortcode');
