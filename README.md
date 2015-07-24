@@ -1,34 +1,38 @@
-Eveeno
+eveeno
 =========
 
 WordPress-Plugin
 ----------------
 
-<b>Version 1.0</b>
+<b>Version 1.1</b>
 
-Binden Sie Anmeldeformulare von <a href="https://eveeno.com">eveeno ticketing</a> einfach per Shortcode in Ihre WordPress-Seite ein.
-Alles was Sie dazu brauchen, ist der Name ihres Events (steht in der URL) und die gewünschte Höhe und Breite des Formulars.
+Binden Sie Anmeldeformulare und Veranstaltungslisten von <a href="https://eveeno.com">eveeno.de</a> einfach per Shortcode in Ihre WordPress-Seite ein.
 
-####Beispiel:####
+####Shortcode Anmeldeformular####
 ```
-[eveeno name="mein-event" width="95%" height="1000px"]
+[eveeno show="form" eventid="123456789" width="95%" height="1000px"]
 ```
+####Shortcodes Veranstaltungsliste####
+In Tabellenform:
+```
+[eveeno show="table" userid="1234" width="95%" height="400px"]
+```
+Als Grid:
+```
+[eveeno show="grid" userid="1234" width="95%" height="400px"]
+```
+Die benötigten IDs finden Sie im Eveeno-Backend unter Event-Einstellungen > Widgets.
+
+### Changelog ###
+#### 1.1 ####
+* Shortcodes für Veranstaltungslisten (Tabelle und Grid)
+* Parameter "name" ersetzt durch "id", da sich der Name ggf. ändern kann
+
+#### 1.0 ####
+* Erster Release: Shortcode für Anmeldeformulare
 
 #### Weitere Informationen: ####
 Autor: Barbara Bothe<br>
 Website: <a href="http://barbara-bothe.de">http://barbara-bothe.de</a><br>
-Lizenz: <a href="http://www.gnu.org/licenses/gpl">GNU General Public License, Version 3</a> (GNUGPLv3)
+Lizenz: <a href="http://www.gnu.org/licenses/gpl">GNU General Public License, Version 2.0</a> (GNUGPLv2.0)
 
-###EN###
-Embed registration forms from <a href="https://eveeno.com">eveeno ticketing</a> in your WordPress site simply by adding a shortcode.
-All you need is the name of your event (as posted in the eveeno url) and the width and height.
-
-####Example:####
-```
-[eveeno name="my-event" width="95%" height="1000px"]
-```
-
-#### Additional Information
-Author: Barbara Bothe<br>
-Website: <a href="http://barbara-bothe.de">http://barbara-bothe.de</a><br>
-Licence: <a href="http://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License, Version 3</a> (GNUGPLv3)

@@ -158,24 +158,48 @@ class Eveeno {
         function eveeno_shortcode($atts) {
             extract(shortcode_atts(
                             array(
-                "name" => '',
+                "show" => '',
+                "eventid" => '',
+                "userid" => '',
                 "width" => '95%',
                 "height" => '2000',
                             ), $atts));
-            $name = sanitize_text_field($name);
+            $show = sanitize_text_field($show);
+            $eventid = sanitize_text_field($eventid);
+            $userid = sanitize_text_field($userid);
             $width = sanitize_text_field($width);
             $height = sanitize_text_field($height);
-            
             $output = '';
-            $output .=  "<iframe src=\"https://eveeno.com/$name?format=embedded\""
-                        . "width=\"$width\"" 
-                        . "height=\"$height\"" 
-                        . "name=\"" . __('Eveeno Anmeldung', Eveeno::textdomain) . "\">"; 
-            $output .= "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', Eveeno::textdomain)
-                        . "<a href=\"https://eveeno.com/$name\">" . __('Anmeldung', Eveeno::textdomain) . "</a>" . "</p>";
-            $output .= "</iframe>";
-            $output .= "<p><small>".__('Erstellt mit', Eveeno::textdomain)." <a href=\"https://eveeno.com\" target=\"_blank\">eveeno ticketing</a></small></p>";
             
+            if ($show == 'form' && $eventid !='') {
+                $output .=  "<iframe src=\"https://eveeno.com/$eventid?format=embedded\""
+                            . "width=\"$width\"" 
+                            . "height=\"$height\"" 
+                            . "name=\"" . __('Eveeno Anmeldung', Eveeno::textdomain) . "\">"; 
+                $output .= "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', Eveeno::textdomain)
+                            . "<a href=\"https://eveeno.com/$eventid\">" . __('Anmeldung', Eveeno::textdomain) . "</a>" . "</p>";
+                $output .= "</iframe>";
+            } elseif ($show == 'table' && $userid !='') {
+                $output .=  "<iframe src=\"http://eveeno.com/de/event-cal/$userid?style=table&format=embedded\""
+                            . "width=\"$width\"" 
+                            . "height=\"$height\"" 
+                            . "name=\"" . __('Unsere Veranstaltungen', Eveeno::textdomain) . "\">"; 
+                $output .= "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', Eveeno::textdomain)
+                            . "<a href=\"https://eveeno.com/$userid\">" . __('Anmeldung', Eveeno::textdomain) . "</a>" . "</p>";
+                $output .= "</iframe>";
+            } elseif ($show == 'grid' && $userid !='') {
+                $output .=  "<iframe src=\"http://eveeno.com/de/event-cal/$userid?style=grid&format=embedded\""
+                            . "width=\"$width\"" 
+                            . "height=\"$height\"" 
+                            . "name=\"" . __('Unsere Veranstaltungen', Eveeno::textdomain) . "\">"; 
+                $output .= "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', Eveeno::textdomain)
+                            . "<a href=\"https://eveeno.com/$userid\">" . __('Anmeldung', Eveeno::textdomain) . "</a>" . "</p>";
+                $output .= "</iframe>";
+            } else {
+                return false;
+            }
+            $output .= "<p class=\"eveeno\"><small>".__('Erstellt mit', Eveeno::textdomain)." <a href=\"https://eveeno.com\" target=\"_blank\">eveeno.de</a></small></p>";
+                        
             return $output;
         }
 
