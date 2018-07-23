@@ -1,8 +1,8 @@
 <?php
 /*
   Plugin Name: Eveeno
-  Plugin URI: https://github.com/Cassandre
-  Version: 1.2
+  Plugin URI: https://github.com/cassandre/eveeno-wp
+  Version: 1.3
   Description: Erstellt Shortcode, der Anmeldeformulare und Veranstaltungslisten von Eveeno in die eigene Seite integriert
   Author: Barbara Bothe
   Author URI: http://barbara-bothe.de
@@ -41,12 +41,6 @@ class Eveeno {
      */
 
     const option_name = 'eveeno';
-
-    /*
-     * Name der Text-Domain.
-     * string
-     */
-    const textdomain = 'eveeno';
 
     /*
      * Minimal erforderliche PHP-Version.
@@ -103,7 +97,7 @@ class Eveeno {
 
     private function __construct() {
        
-        load_plugin_textdomain(self::textdomain, false, sprintf('%s/languages/', dirname(plugin_basename(__FILE__))));
+        load_plugin_textdomain('eveeno', false, sprintf('%s/languages/', dirname(plugin_basename(__FILE__))));
 
         self::add_shortcode();
     }
@@ -134,11 +128,11 @@ class Eveeno {
         $error = '';
 
         if (version_compare(PHP_VERSION, self::php_version, '<')) {
-            $error = sprintf(__('Ihre PHP-Version %s ist veraltet. Bitte aktualisieren Sie mindestens auf die PHP-Version %s.', self::textdomain), PHP_VERSION, self::php_version);
+            $error = sprintf(__('Ihre PHP-Version %s ist veraltet. Bitte aktualisieren Sie mindestens auf die PHP-Version %s.', 'eveeno'), PHP_VERSION, self::php_version);
         }
 
         if (version_compare($GLOBALS['wp_version'], self::wp_version, '<')) {
-            $error = sprintf(__('Ihre Wordpress-Version %s ist veraltet. Bitte aktualisieren Sie mindestens auf die Wordpress-Version %s.', self::textdomain), $GLOBALS['wp_version'], self::wp_version);
+            $error = sprintf(__('Ihre Wordpress-Version %s ist veraltet. Bitte aktualisieren Sie mindestens auf die Wordpress-Version %s.', 'eveeno'), $GLOBALS['wp_version'], self::wp_version);
         }
 
         // Wenn die Überprüfung fehlschlägt, dann wird das Plugin automatisch deaktiviert.
@@ -161,8 +155,8 @@ class Eveeno {
                 "show" => '',
                 "eventid" => '',
                 "userid" => '',
-                "width" => '95%',
-                "height" => '2000',
+                "width" => '98%',
+                "height" => '800px',
                             ), $atts));
             $show = sanitize_text_field($show);
             $eventid = sanitize_text_field($eventid);
@@ -173,9 +167,11 @@ class Eveeno {
             
             if ($show == 'form' && $eventid !='') {
                 $output .=  "<iframe src=\"https://eveeno.com/$eventid?format=embedded\""
-                            . "width=\"$width\"" 
-                            . "height=\"$height\"" 
-                            . "name=\"" . __('Eveeno Anmeldung', Eveeno::textdomain) . "\">"; 
+                            . " width=\"$width\"" 
+                            . " height=\"$height\"" 
+                            . " name=\"" . __('Eveeno Anmeldung', Eveeno::textdomain) . "\""
+                            . " style=\"border:none;\""
+                        . ">"; 
                 $output .= "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', Eveeno::textdomain)
                             . "<a href=\"https://eveeno.com/$eventid\">" . __('Anmeldung', Eveeno::textdomain) . "</a>" . "</p>";
                 $output .= "</iframe>";
@@ -183,7 +179,9 @@ class Eveeno {
                 $output .=  "<iframe src=\"http://eveeno.com/de/event-cal/$userid?style=table&format=embedded\""
                             . "width=\"$width\"" 
                             . "height=\"$height\"" 
-                            . "name=\"" . __('Kommende Veranstaltungen', Eveeno::textdomain) . "\">"; 
+                            . "name=\"" . __('Kommende Veranstaltungen', Eveeno::textdomain) . "\""
+                            . " style=\"border:none;\""
+                            . "\">"; 
                 $output .= "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', Eveeno::textdomain)
                             . "<a href=\"https://eveeno.com/$userid\">" . __('Anmeldung', Eveeno::textdomain) . "</a>" . "</p>";
                 $output .= "</iframe>";
@@ -191,7 +189,9 @@ class Eveeno {
                 $output .=  "<iframe src=\"http://eveeno.com/de/event-cal/$userid?style=grid&format=embedded\""
                             . "width=\"$width\"" 
                             . "height=\"$height\"" 
-                            . "name=\"" . __('Kommende Veranstaltungen', Eveeno::textdomain) . "\">"; 
+                            . "name=\"" . __('Kommende Veranstaltungen', Eveeno::textdomain) . "\""
+                            . " style=\"border:none;\""
+                            . "\">"; 
                 $output .= "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', Eveeno::textdomain)
                             . "<a href=\"https://eveeno.com/$userid\">" . __('Anmeldung', Eveeno::textdomain) . "</a>" . "</p>";
                 $output .= "</iframe>";
@@ -199,14 +199,16 @@ class Eveeno {
                 $output .=  "<iframe src=\"http://eveeno.com/de/event-cal/$userid?style=list&format=embedded\""
                             . "width=\"$width\"" 
                             . "height=\"$height\"" 
-                            . "name=\"" . __('Kommende Veranstaltungen', Eveeno::textdomain) . "\">"; 
+                            . "name=\"" . __('Kommende Veranstaltungen', Eveeno::textdomain) . "\""
+                            . " style=\"border:none;\""
+                            . "\">"; 
                 $output .= "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', Eveeno::textdomain)
                             . "<a href=\"https://eveeno.com/$userid\">" . __('Anmeldung', Eveeno::textdomain) . "</a>" . "</p>";
                 $output .= "</iframe>";
             } else {
                 return false;
             }
-            $output .= "<p class=\"eveeno\"><small>".__('Erstellt mit', Eveeno::textdomain)." <a href=\"https://eveeno.com\" target=\"_blank\">eveeno.de</a></small></p>";
+            $output .= "<p class=\"eveeno\" style=\"text-align: right; width: " . $width . "\"><small>".__('powered by', Eveeno::textdomain)." <a href=\"https://eveeno.com\" target=\"_blank\">eveeno.de</a></small></p>";
                         
             return $output;
         }

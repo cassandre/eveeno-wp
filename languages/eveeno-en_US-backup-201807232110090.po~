@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Eveeno v1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-23 21:07+0000\n"
-"PO-Revision-Date: 2018-07-23 21:10+0000\n"
+"PO-Revision-Date: 2018-07-23 21:08+0000\n"
 "Last-Translator: Barbara <info@barbara-bothe.de>\n"
 "Language-Team: English (United States)\n"
 "MIME-Version: 1.0\n"
@@ -28,8 +28,8 @@ msgid ""
 "Ihre PHP-Version %s ist veraltet. Bitte aktualisieren Sie mindestens auf die "
 "PHP-Version %s."
 msgstr ""
-"Your server is running PHP version %s. Please upgrade at least to PHP "
-"version %s."
+"Your WordPress version is %s. Please upgrade at least to WordPress version "
+"%s."
 
 #: eveeno.php:135
 #, php-format
@@ -37,29 +37,25 @@ msgid ""
 "Ihre Wordpress-Version %s ist veraltet. Bitte aktualisieren Sie mindestens "
 "auf die Wordpress-Version %s."
 msgstr ""
-"Your WordPress version is %s. Please upgrade at least to WordPress version "
-"%s."
 
 #. Name of the plugin
 msgid "Eveeno"
-msgstr "Eveeno"
+msgstr ""
 
 #. Description of the plugin
 msgid ""
 "Erstellt Shortcode, der Anmeldeformulare und Veranstaltungslisten von Eveeno "
 "in die eigene Seite integriert"
 msgstr ""
-"Provides a shortcode to include Eveeno registration forms and event lists in "
-"your website."
 
 #. URI of the plugin
 msgid "https://github.com/cassandre/eveeno-wp"
-msgstr "https://github.com/cassandre/eveeno-wp"
+msgstr ""
 
 #. Author of the plugin
 msgid "Barbara Bothe"
-msgstr "Barbara Bothe"
+msgstr ""
 
 #. Author URI of the plugin
 msgid "http://barbara-bothe.de"
-msgstr "http://barbara-bothe.de"
+msgstr ""
