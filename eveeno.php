@@ -156,7 +156,7 @@ class Eveeno {
                 'userid' => '',
                 'width' => '98%',
                 'height' => '800px',
-                'period' => '', // '' (default = all) | past | future
+                'period' => 'all', // all (default) | past | future
                 'term' => '',
                 'notterm' => '',
                 'lang' => '', // de | en | fr
@@ -177,7 +177,7 @@ class Eveeno {
             if ($args['notterm'] != '') {
                 $param .= '&notterm='.sanitize_text_field($args['notterm']);
             }
-            if (in_array($args['period'], ['past', 'future'])) {
+            if (in_array($args['period'], ['all', 'past', 'future'])) {
                 $param .= '&period='.sanitize_text_field($args['period']);
             }
             if (in_array($args['lang'], ['de', 'en', 'fr'])) {
