@@ -2,10 +2,10 @@
 /*
   Plugin Name: Eveeno
   Plugin URI: https://github.com/cassandre/eveeno-wp
-  Version: 1.32
+  Version: 1.4
   Description: Erstellt Shortcode, der Anmeldeformulare und Veranstaltungslisten von Eveeno in die eigene Seite integriert
   Author: Barbara Bothe
-  Author URI: http://barbara-bothe.de
+  Author URI: https://barbara-bothe.de
   Network:
  */
 
@@ -150,23 +150,52 @@ class Eveeno {
     private static function add_shortcode() {
 
         function eveeno_shortcode($atts) {
-            extract(shortcode_atts(
-                            array(
-                "show" => '',
-                "eventid" => '',
-                "userid" => '',
-                "width" => '98%',
-                "height" => '800px',
-                            ), $atts));
-            $show = sanitize_text_field($show);
-            $eventid = sanitize_text_field($eventid);
-            $userid = sanitize_text_field($userid);
-            $width = sanitize_text_field($width);
-            $height = sanitize_text_field($height);
+            $defaults = [
+                'show' => '',
+                'eventid' => '',
+                'userid' => '',
+                'width' => '98%',
+                'height' => '800px',
+                'period' => '', // '' (default = all) | past | future
+                'term' => '',
+                'notterm' => '',
+                'lang' => '', // de | en | fr
+                'sort' => '', // date (default) | name
+                'scope' => 'all', // all (default) | private | public
+                'apikey' => ''
+                ];
+            $args = shortcode_atts($defaults, $atts);
+            $show = sanitize_text_field($args['show']);
+            $eventid = sanitize_text_field($args['eventid']);
+            $userid = sanitize_text_field($args['userid']);
+            $width = sanitize_text_field($args['width']);
+            $height = sanitize_text_field($args['height']);
+            $param = '';
+            if ($args['term'] != '') {
+                $param .= '&term='.sanitize_text_field($args['term']);
+            }
+            if ($args['notterm'] != '') {
+                $param .= '&notterm='.sanitize_text_field($args['notterm']);
+            }
+            if (in_array($args['period'], ['past', 'future'])) {
+                $param .= '&period='.sanitize_text_field($args['period']);
+            }
+            if (in_array($args['lang'], ['de', 'en', 'fr'])) {
+                $param .= '&lang='.sanitize_text_field($args['lang']);
+            }
+            if ($args['sort'] == 'name') {
+                $param .= '&sort=name';
+            }
+            if ($args['apikey'] != '') {
+                $param .= '&apikey='.sanitize_text_field($args['apikey']);
+            }
+            if (in_array($args['scope'], ['all', 'public', 'private'])) {
+                $param .= '&scope='.sanitize_text_field($args['scope']);
+            }
             $output = '';
-            
+
             if ($show == 'form' && $eventid !='') {
-                $output .=  "<iframe src=\"https://eveeno.com/$eventid?format=embedded\""
+                $output .=  "<iframe src=\"https://eveeno.com/$eventid?format=embedded$param\""
                             . " width=\"$width\"" 
                             . " height=\"$height\"" 
                             . " name=\"" . __('eveeno Anmeldung', 'eveeno') . "\""
@@ -176,30 +205,30 @@ class Eveeno {
                             . "<a href=\"https://eveeno.com/$eventid\">" . __('Anmeldung', 'eveeno') . "</a>" . "</p>";
                 $output .= "</iframe>";
             } elseif ($show == 'table' && $userid !='') {
-                $output .=  "<iframe src=\"https://eveeno.com/de/event-cal/$userid?style=table&format=embedded\""
+                $output .=  "<iframe src=\"https://eveeno.com/de/event-cal/$userid?style=table&format=embedded$param\""
                             . "width=\"$width\"" 
                             . "height=\"$height\"" 
-                            . "name=\"" . __('Kommende Veranstaltungen', 'eveeno') . "\""
+                            . "name=\"" . __('Veranstaltungen', 'eveeno') . "\""
                             . " style=\"border:none;\""
                             . "\">"; 
                 $output .= "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', 'eveeno')
                             . "<a href=\"https://eveeno.com/$userid\">" . __('Anmeldung', 'eveeno') . "</a>" . "</p>";
                 $output .= "</iframe>";
             } elseif ($show == 'grid' && $userid !='') {
-                $output .=  "<iframe src=\"https://eveeno.com/de/event-cal/$userid?style=grid&format=embedded\""
+                $output .=  "<iframe src=\"https://eveeno.com/de/event-cal/$userid?style=grid&format=embedded$param\""
                             . "width=\"$width\"" 
                             . "height=\"$height\"" 
-                            . "name=\"" . __('Kommende Veranstaltungen', 'eveeno') . "\""
+                            . "name=\"" . __('Veranstaltungen', 'eveeno') . "\""
                             . " style=\"border:none;\""
                             . "\">"; 
                 $output .= "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', 'eveeno')
                             . "<a href=\"https://eveeno.com/$userid\">" . __('Anmeldung', 'eveeno') . "</a>" . "</p>";
                 $output .= "</iframe>";
             } elseif ($show == 'list' && $userid !='') {
-                $output .=  "<iframe src=\"https://eveeno.com/de/event-cal/$userid?style=list&format=embedded\""
+                $output .=  "<iframe src=\"https://eveeno.com/de/event-cal/$userid?style=list&format=embedded$param\""
                             . "width=\"$width\"" 
                             . "height=\"$height\"" 
-                            . "name=\"" . __('Kommende Veranstaltungen', 'eveeno') . "\""
+                            . "name=\"" . __('Veranstaltungen', 'eveeno') . "\""
                             . " style=\"border:none;\""
                             . "\">"; 
                 $output .= "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', 'eveeno')
