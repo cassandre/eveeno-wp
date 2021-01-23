@@ -153,6 +153,7 @@ class Eveeno {
             $defaults = [
                 'show' => '',
                 'eventid' => '',
+                'permalink' => '',
                 'userid' => '',
                 'width' => '98%',
                 'height' => '800px',
@@ -167,6 +168,8 @@ class Eveeno {
             $args = shortcode_atts($defaults, $atts);
             $show = sanitize_text_field($args['show']);
             $eventid = sanitize_text_field($args['eventid']);
+            $permalink = sanitize_text_field($args['permalink']);
+            $eventid = $permalink != '' ? $permalink : $eventid;
             $userid = sanitize_text_field($args['userid']);
             $width = sanitize_text_field($args['width']);
             $height = sanitize_text_field($args['height']);
