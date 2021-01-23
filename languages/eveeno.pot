@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Eveeno\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-23 21:07+0000\n"
+"POT-Creation-Date: 2021-01-23 18:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -13,6 +13,42 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/"
+
+#: eveeno.php:205 eveeno.php:215 eveeno.php:225 eveeno.php:235
+msgid "Anmeldung"
+msgstr ""
+
+#. Author of the plugin
+msgid "Barbara Bothe"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Erstellt Shortcode, der Anmeldeformulare und Veranstaltungslisten von Eveeno "
+"in die eigene Seite integriert"
+msgstr ""
+
+#. Name of the plugin
+msgid "Eveeno"
+msgstr ""
+
+#: eveeno.php:201
+msgid "eveeno Anmeldung"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://barbara-bothe.de"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/cassandre/eveeno-wp"
+msgstr ""
+
+#: eveeno.php:204 eveeno.php:214 eveeno.php:224 eveeno.php:234
+msgid ""
+"Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die "
+"eingebettete Seite über den folgenden Link aufrufen: "
+msgstr ""
 
 #: eveeno.php:131
 #, php-format
@@ -28,24 +64,10 @@ msgid ""
 "auf die Wordpress-Version %s."
 msgstr ""
 
-#. Name of the plugin
-msgid "Eveeno"
+#: eveeno.php:240
+msgid "powered by"
 msgstr ""
 
-#. Description of the plugin
-msgid ""
-"Erstellt Shortcode, der Anmeldeformulare und Veranstaltungslisten von Eveeno "
-"in die eigene Seite integriert"
-msgstr ""
-
-#. URI of the plugin
-msgid "https://github.com/cassandre/eveeno-wp"
-msgstr ""
-
-#. Author of the plugin
-msgid "Barbara Bothe"
-msgstr ""
-
-#. Author URI of the plugin
-msgid "http://barbara-bothe.de"
+#: eveeno.php:211 eveeno.php:221 eveeno.php:231
+msgid "Veranstaltungen"
 msgstr ""

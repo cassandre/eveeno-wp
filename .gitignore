@@ -1,3 +1,4 @@
 nbproject*
 readme.txt
-readme.txt
+*.po~
+*.pot~
