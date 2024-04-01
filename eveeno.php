@@ -2,7 +2,7 @@
 /*
   Plugin Name: Eveeno
   Plugin URI: https://github.com/cassandre/eveeno-wp
-  Version: 1.5
+  Version: 1.6
   Description: Erstellt Shortcode, der Anmeldeformulare und Veranstaltungslisten von Eveeno in die eigene Seite integriert
   Author: Barbara Bothe
   Author URI: https://barbara-bothe.de
@@ -202,7 +202,7 @@ class Eveeno {
                             . " width=\"$width\"" 
                             . " height=\"$height\"" 
                             . " name=\"" . __('eveeno Anmeldung', 'eveeno') . "\""
-                            . " style=\"border:none;\""
+                            . " style=\"border:none;display:block;\""
                         . ">"; 
                 $output .= "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', 'eveeno')
                             . "<a href=\"https://eveeno.com/$eventid\">" . __('Anmeldung', 'eveeno') . "</a>" . "</p>";
@@ -212,7 +212,7 @@ class Eveeno {
                             . "width=\"$width\"" 
                             . "height=\"$height\"" 
                             . "name=\"" . __('Veranstaltungen', 'eveeno') . "\""
-                            . " style=\"border:none;\""
+                            . " style=\"border:none;display:block;\""
                             . "\">"; 
                 $output .= "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', 'eveeno')
                             . "<a href=\"https://eveeno.com/$userid\">" . __('Anmeldung', 'eveeno') . "</a>" . "</p>";
@@ -222,7 +222,7 @@ class Eveeno {
                             . "width=\"$width\"" 
                             . "height=\"$height\"" 
                             . "name=\"" . __('Veranstaltungen', 'eveeno') . "\""
-                            . " style=\"border:none;\""
+                            . " style=\"border:none;display:block;\""
                             . "\">"; 
                 $output .= "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', 'eveeno')
                             . "<a href=\"https://eveeno.com/$userid\">" . __('Anmeldung', 'eveeno') . "</a>" . "</p>";
@@ -232,7 +232,7 @@ class Eveeno {
                             . "width=\"$width\"" 
                             . "height=\"$height\"" 
                             . "name=\"" . __('Veranstaltungen', 'eveeno') . "\""
-                            . " style=\"border:none;\""
+                            . " style=\"border:none;display:block;\""
                             . "\">"; 
                 $output .= "<p>" . __('Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die eingebettete Seite über den folgenden Link aufrufen: ', 'eveeno')
                             . "<a href=\"https://eveeno.com/$userid\">" . __('Anmeldung', 'eveeno') . "</a>" . "</p>";

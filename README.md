@@ -4,7 +4,7 @@ eveeno
 WordPress-Plugin
 ----------------
 
-<b>Version 1.5</b>
+<b>Version 1.6</b>
 
 Binden Sie Anmeldeformulare und Veranstaltungslisten von <a href="https://eveeno.com">eveeno.de</a> einfach per Shortcode in Ihre WordPress-Seite ein.
 
@@ -41,7 +41,11 @@ Die benötigten IDs finden Sie im Eveeno-Backend unter Event-Einstellungen > Wid
 ### Changelog ###
 
 #### 1.5 ####
-* Standartwerte für Shortcode-Parameter entfernt
+* Kleineres Layout-Update
+* bis WP 6.5 getestet
+
+#### 1.5 ####
+* Standardwerte für Shortcode-Parameter entfernt
 * bis WP 5.8.2 getestet
 
 #### 1.4 ####
