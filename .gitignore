@@ -1,6 +1,4 @@
 nbproject*
-readme.txt
 *.po~
 *.pot~
-assets/icon-128x128.png
-assets/icon-256x256.png
+.DS_Store

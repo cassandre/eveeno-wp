@@ -1,12 +1,13 @@
 <?php
 /*
-  Plugin Name: Eveeno
-  Plugin URI: https://github.com/cassandre/eveeno-wp
-  Version: 1.6
-  Description: Erstellt Shortcode, der Anmeldeformulare und Veranstaltungslisten von Eveeno in die eigene Seite integriert
-  Author: Barbara Bothe
-  Author URI: https://barbara-bothe.de
-  Network:
+  Plugin Name:  Eveeno
+  Plugin URI:   https://github.com/cassandre/eveeno-wp
+  Version:      1.6
+  Description:  Erstellt Shortcode, der Anmeldeformulare und Veranstaltungslisten von Eveeno in die eigene Seite integriert
+  Author:       Barbara Bothe
+  Author URI:   https://barbara-bothe.de
+  License:      GPLv3 or later
+  License URI:  https://www.gnu.org/licenses/gpl-3.0.html
  */
 
 /*
@@ -128,17 +129,19 @@ class Eveeno {
         $error = '';
 
         if (version_compare(PHP_VERSION, self::php_version, '<')) {
-            $error = sprintf(__('Ihre PHP-Version %s ist veraltet. Bitte aktualisieren Sie mindestens auf die PHP-Version %s.', 'eveeno'), PHP_VERSION, self::php_version);
+            /* translators: PHP-Version */
+            $error = sprintf(__('Ihre PHP-Version %1$s ist veraltet. Bitte aktualisieren Sie mindestens auf die PHP-Version %2$s.', 'eveeno'), PHP_VERSION, self::php_version);
         }
 
         if (version_compare($GLOBALS['wp_version'], self::wp_version, '<')) {
-            $error = sprintf(__('Ihre Wordpress-Version %s ist veraltet. Bitte aktualisieren Sie mindestens auf die Wordpress-Version %s.', 'eveeno'), $GLOBALS['wp_version'], self::wp_version);
+            /* translators: WordPress-Version */
+            $error = sprintf(__('Ihre WordP ress-Version %1$s ist veraltet. Bitte aktualisieren Sie mindestens auf die Wordpress-Version %2$s.', 'eveeno'), $GLOBALS['wp_version'], self::wp_version);
         }
 
         // Wenn die Überprüfung fehlschlägt, dann wird das Plugin automatisch deaktiviert.
         if (!empty($error)) {
             deactivate_plugins(plugin_basename(__FILE__), false, true);
-            wp_die($error);
+            wp_die(esc_html($error));
         }
     }
 
