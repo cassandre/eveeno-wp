@@ -3,7 +3,7 @@ Contributors:       babo2015
 Tags:               event, registration, form, conference,
 Requires at least:  4.1
 Tested up to:       6.7
-Stable tag:         1.6
+Stable tag:         1.7
 License:            GPLv3 or later
 License URI:        https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,6 +50,10 @@ apikey=""
 1. Place a shortcode in your page or post.
 
 == Changelog ==
+
+= 1.7 =
+* Plugin Check
+* tested with WordPress 6.7
 
 = 1.6 =
 * Minor layout update
