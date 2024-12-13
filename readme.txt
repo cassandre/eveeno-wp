@@ -51,6 +51,9 @@ apikey=""
 
 == Changelog ==
 
+= 1.8 =
+* Bugfixes
+
 = 1.7 =
 * Plugin Check
 * tested with WordPress 6.7

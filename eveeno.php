@@ -2,7 +2,7 @@
 /*
   Plugin Name:  Eveeno
   Plugin URI:   https://github.com/cassandre/eveeno-wp
-  Version:      1.7
+  Version:      1.8
   Description:  Erstellt Shortcode, der Anmeldeformulare und Veranstaltungslisten von Eveeno in die eigene Seite integriert
   Author:       Barbara Bothe
   Author URI:   https://barbara-bothe.de
