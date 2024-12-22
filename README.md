@@ -1,31 +1,30 @@
-eveeno
-=========
+# eveeno WordPress Plugin
 
-WordPress-Plugin
-----------------
+[![Aktuelle Version](https://img.shields.io/github/package-json/v/cassandre/eveeno-wp/master?label=Version)](https://github.com/cassandre/eveeno-wp)
+[![Release Version](https://img.shields.io/github/v/release/cassandre/eveeno-wp?label=Release+Version)](https://github.com/cassandre/eveeno-wp/releases/)
+[![GitHub License](https://img.shields.io/github/license/cassandre/eveeno-wp)](https://github.com/cassandre/eveeno-wp)
+[![GitHub issues](https://img.shields.io/github/issues/cassandre/eveeno-wp)](https://github.com/cassandre/eveeno-wp/issues)
 
-<b>Version 1.8</b>
+WordPress plugin for embedding <a href="https://eveeno.com">eveeno.de</a> registration forms and upcoming events lists.
 
-Binden Sie Anmeldeformulare und Veranstaltungslisten von <a href="https://eveeno.com">eveeno.de</a> einfach per Shortcode in Ihre WordPress-Seite ein.
-
-####Shortcode Anmeldeformular####
+## Shortcode Registration Form
 ```
-[eveeno show="form" eventid="123456789" width="95%" height="1000px"]
+[eveeno style="form" event="123456789"]
 ```
-####Shortcodes Veranstaltungsliste####
-In Tabellenform:
+## Shortcodes Events List
+### Table Style:
 ```
-[eveeno show="table" userid="1234" width="95%" height="400px"]
+[eveeno style="table" user="1234"]
 ```
-Als Grid:
+### Grid Style:
 ```
-[eveeno show="grid" userid="1234" width="95%" height="400px"]
+[eveeno style="grid" user="1234"]
 ```
-Als kurze Liste (z.B. in der Sidebar):
+### Short List (e.g. in Sidebar):
 ```
-[eveeno show="list" userid="1234" width="95%" height="400px"]
+[eveeno style="list" user="1234"]
 ```
-Weitere Shortcode-Parameter:
+## Other Shortcode Attributes:
 ```
 period="" [all | past | future (default)]
 term=""
@@ -36,38 +35,10 @@ scope="" [all | private | public (default)]
 apikey=""
 ```
 
-Die benötigten IDs finden Sie im Eveeno-Backend unter Event-Einstellungen > Widgets.
+You'll find the IDs in your Eveeno backend:  Event-Einstellungen > Widgets.
 
-### Changelog ###
-
-#### 1.5 ####
-* Kleineres Layout-Update
-* bis WP 6.5 getestet
-
-#### 1.5 ####
-* Standardwerte für Shortcode-Parameter entfernt
-* bis WP 5.8.2 getestet
-
-#### 1.4 ####
-* Neue Shortcode-Parameter: period, term, notter, lang, sort, scope, apikey 
-* für WP 5.6 getestet
-
-#### 1.3 ####
-* kleinere Layoutverbesserung
-* für WP 4.9.7 getestet
-
-#### 1.2 ####
-* Shortcode für kurze Veranstaltungslisten, z.B. in der Sidebar
-
-#### 1.1 ####
-* Shortcodes für Veranstaltungslisten (Tabelle und Grid)
-* Parameter "name" ersetzt durch "id", da sich der Name ggf. ändern kann
-
-#### 1.0 ####
-* Erster Release: Shortcode für Anmeldeformulare
-
-#### Weitere Informationen: ####
-Autor: Barbara Bothe<br>
+#### General Information: ####
+Author: Barbara Bothe<br>
 Website: <a href="https://barbara-bothe.de">https://barbara-bothe.de</a><br>
-Lizenz: <a href="https://www.gnu.org/licenses/gpl">GNU General Public License, Version 2.0</a> (GNUGPLv2.0)<br>
-Im WordPress Plugin Directory: <a href="https://wordpress.org/plugins/eveeno">https://wordpress.org/plugins/eveeno</a>
+Licence: <a href="https://www.gnu.org/licenses/gpl">GNU General Public License, Version 3.0</a> (GNUGPLv3.0)<br>
+WordPress Plugin Directory: <a href="https://wordpress.org/plugins/eveeno">https://wordpress.org/plugins/eveeno</a>
