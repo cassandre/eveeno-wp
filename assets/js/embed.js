@@ -23,13 +23,13 @@ var SCRIPT_VERSION = '1.1';
 */
 
 window.onload = function() {
-	console.log('script version ' + SCRIPT_VERSION);
+	//logconsole.log('script version ' + SCRIPT_VERSION);
 	evInitializeWidgets();
 };
 
 function evInitializeWidgets() {
 	const widgets = document.querySelectorAll('.eveenoWidget');
-	console.log('evInitializeWidgets', widgets);
+	//console.log('evInitializeWidgets', widgets);
 	widgets.forEach(evCreateWidget);
 };
 
@@ -40,22 +40,38 @@ function evInitializeWidgets() {
 
 function evCreateWidget(widget, i) {
 
-	console.log('evCreateWidget', i, widget);
+	//console.log('evCreateWidget', i, widget);
 
+	// read parameters
+	
 	var data = widget.dataset;
 
 	var apikey = data.apikey;
+	var event = data.event;
 	var lang = data.lang;
 	var scope = data.scope;
 	var server = data.server;
 	var style = data.style;
+	var type = data.type;
+	var user = data.user;
 	var version = data.version || 'none';
+	var wp_plugin_version = data.wp_plugin_version || 'none';
 	
-	// add fallbacks for WP plugin version < 1.8
-	var type = data.show ? data.show : data.type;
-	var user = data.userid ? data.userid : data.user;
-	var event = data.eventid ? data.eventid : data.event;
+	// overwrite some by fallbacks for WP plugin version < 1.8
+	
+	if (data.show) {
+		if (data.show == 'form') {
+			type = 'booking';
+		}
+		else if (data.show == 'grid' || data.show == 'table' || data.show == 'list') {
+			type = 'booking'; style = data.show;
+		}
+	}
+	if (data.eventid) event = data.eventid;
+	if (data.userid) user = data.userid;
 		
+	// build widget url
+	
 	switch (server) {
 		case 'dev': var serverurl = 'http://localhost'; break;
 		case 'tst': var serverurl = 'https://tst.eveeno.com'; break;
@@ -63,8 +79,6 @@ function evCreateWidget(widget, i) {
 		default:    var serverurl = 'https://eveeno.com';
 	}
 
-	// build widget url
-	
 	switch (type) {
 		
 		case 'booking':
@@ -103,6 +117,8 @@ function evCreateWidget(widget, i) {
 
 	url.searchParams.append('format', 'embedded');
 	url.searchParams.append('version', SCRIPT_VERSION);
+	url.searchParams.append('wp_plugin_version', wp_plugin_version);
+
 
 	// create iframe
 	
@@ -128,7 +144,7 @@ function evCreateWidget(widget, i) {
 
 		onMessage: function(data){
 
-			console.log('Message received', data);
+			//console.log('Message received', data);
 			
 			// receive commands from the iframed page
 			
