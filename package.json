@@ -1,0 +1,28 @@
+{
+  "name": "eveeno",
+  "version": "2.0",
+  "description": "WordPress plugin for embedding eveeno registration forms and upcoming events lists",
+  "main": "eveeno.php",
+  "textdomain": "eveeno",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cassandre/eveeno-wp",
+    "issues": "https://github.com/cassandre/eveeno-wp/issues",
+    "clone": "git+https://github.com/cassandre/eveeno-wp.git"
+  },
+  "browserslist": [
+    "last 3 years"
+  ],
+  "supports": {
+    "email": "info@barbara-bothe.de ",
+    "docs": "https://github.com/cassandre/eveeno-wp"
+  },
+  "author": {
+    "name": "Barbara Bothe <info@barbara-bothe.de>",
+    "url": "https://barbara-bothe.de"
+  },
+  "license": "GNU General Public License v3"
+}
