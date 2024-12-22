@@ -1,6 +1,6 @@
 # eveeno WordPress Plugin
 
-[![Aktuelle Version](https://img.shields.io/github/package-json/v/cassandre/eveeno-wp/master?label=Version)](https://github.com/cassandre/eveeno-wp)
+[![Aktuelle Version](https://img.shields.io/badge/Version-2.0-brightgreen)](https://github.com/cassandre/eveeno-wp)
 [![Release Version](https://img.shields.io/github/v/release/cassandre/eveeno-wp?label=Release+Version)](https://github.com/cassandre/eveeno-wp/releases/)
 [![GitHub License](https://img.shields.io/github/license/cassandre/eveeno-wp)](https://github.com/cassandre/eveeno-wp)
 [![GitHub issues](https://img.shields.io/github/issues/cassandre/eveeno-wp)](https://github.com/cassandre/eveeno-wp/issues)
