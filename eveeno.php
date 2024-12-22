@@ -1,13 +1,13 @@
 <?php
 /*
-  Plugin Name:  Eveeno
-  Plugin URI:   https://github.com/cassandre/eveeno-wp
-  Version:      2.0
-  Description:  WordPress plugin for embedding eveeno registration forms and upcoming events lists
-  Author:       Barbara Bothe
-  Author URI:   https://barbara-bothe.de
-  License:      GPLv3 or later
-  License URI:    https://www.gnu.org/licenses/gpl-3.0.html
+Plugin Name:  Eveeno
+Plugin URI:   https://github.com/cassandre/eveeno-wp
+Version:      2.0
+Description:  WordPress plugin for embedding eveeno registration forms and upcoming events lists
+Author:       Barbara Bothe
+Author URI:   https://barbara-bothe.de
+License:      GPLv3 or later
+License URI:  https://www.gnu.org/licenses/gpl-3.0.html
  */
 
 namespace Eveeno;
