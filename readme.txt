@@ -1,9 +1,9 @@
 === Eveeno ===
 Contributors:       babo2015
 Tags:               event, registration, form, conference,
-Requires at least:  4.1
+Requires at least:  6.2
 Tested up to:       6.7
-Stable tag:         1.7
+Stable tag:         2.0
 License:            GPLv3 or later
 License URI:        https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,19 +18,19 @@ You will find the event id and the user id in your eveeno backend in Event-Einst
 = Examples =
 Embedding a registration form:
 `
-[eveeno show="form" eventid="123456789" width="95%" height="1000px"]
+[eveeno style="form" event="123456789" width="95%" height="1000px"]
 `
 Embedding an event list as a table:
 `
-[eveeno show="table" userid="1234" width="95%" height="400px"]
+[eveeno style="table" user="1234" width="95%" height="400px"]
 `
 Embedding an event list in grid view:
 `
-[eveeno show="grid" userid="1234" width="95%" height="400px"]
+[eveeno style="grid" user="1234" width="95%" height="400px"]
 `
 Embedding a short event list:
 `
-[eveeno show="list" userid="1234" width="95%" height="400px"]
+[eveeno style="list" user="1234" width="95%" height="400px"]
 `
 = Additional Shortcode Parameters =
 `
@@ -46,40 +46,5 @@ apikey=""
 == Installation ==
 
 1. Upload `eveeno.php` and eventually the `languages` folder to the `/wp-content/plugins/eveeno` directory.
-1. Activate the plugin through the 'Plugins' menu in WordPress.
-1. Place a shortcode in your page or post.
-
-== Changelog ==
-
-= 1.8 =
-* Bugfixes
-
-= 1.7 =
-* Plugin Check
-* tested with WordPress 6.7
-
-= 1.6 =
-* Minor layout update
-* tested with WordPress 6.5
-
-= 1.5 =
-* Removed shortcode parameter defaults
-* tested with WordPress 5.8.2
-
-= 1.4 =
-* New Shortcode parameters: period, term, notterm, lang, sort, scope, apikey
-* tested with WordPress 5.6
-
-= 1.3 =
-* layout optimization
-* tested with WordPress 4.9.7
-
-= 1.2 =
-* Added shortcodes for event shortlist (list)
-
-= 1.1 =
-* Added shortcodes for event lists (table and grid view)
-* Changed name parameter to id as event names may change
-
-= 1.0 =
-* First release: shortcode for registration forms
+2. Activate the plugin through the 'Plugins' menu in WordPress.
+3. Place a shortcode in your page or post.

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Eveeno\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-23 18:13+0000\n"
+"POT-Creation-Date: 2024-12-22 12:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,26 +14,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/"
 
-#: eveeno.php:205 eveeno.php:215 eveeno.php:225 eveeno.php:235
-msgid "Anmeldung"
-msgstr ""
-
 #. Author of the plugin
 msgid "Barbara Bothe"
 msgstr ""
 
-#. Description of the plugin
-msgid ""
-"Erstellt Shortcode, der Anmeldeformulare und Veranstaltungslisten von Eveeno "
-"in die eigene Seite integriert"
-msgstr ""
-
 #. Name of the plugin
 msgid "Eveeno"
-msgstr ""
-
-#: eveeno.php:201
-msgid "eveeno Anmeldung"
 msgstr ""
 
 #. Author URI of the plugin
@@ -44,30 +30,30 @@ msgstr ""
 msgid "https://github.com/cassandre/eveeno-wp"
 msgstr ""
 
-#: eveeno.php:204 eveeno.php:214 eveeno.php:224 eveeno.php:234
-msgid ""
-"Ihr Browser kann leider keine eingebetteten Frames anzeigen. Sie können die "
-"eingebettete Seite über den folgenden Link aufrufen: "
+#. 1: The plugin name, 2: The error string.
+#: eveeno.php:72 eveeno.php:99
+#, php-format
+msgid "Plugins: %1$s: %2$s"
 msgstr ""
 
-#: eveeno.php:131
+#. 1: Server PHP version number, 2: Required PHP version number.
+#: eveeno.php:46
 #, php-format
 msgid ""
-"Ihre PHP-Version %s ist veraltet. Bitte aktualisieren Sie mindestens auf die "
-"PHP-Version %s."
+"The server is running PHP version %1$s. The Plugin requires at least PHP "
+"version %2$s."
 msgstr ""
 
-#: eveeno.php:135
+#. 1: Server WordPress version number, 2: Required WordPress version number.
+#: eveeno.php:53
 #, php-format
 msgid ""
-"Ihre Wordpress-Version %s ist veraltet. Bitte aktualisieren Sie mindestens "
-"auf die Wordpress-Version %s."
+"The server is running WordPress version %1$s. The Plugin requires at least "
+"WordPress version %2$s."
 msgstr ""
 
-#: eveeno.php:240
-msgid "powered by"
-msgstr ""
-
-#: eveeno.php:211 eveeno.php:221 eveeno.php:231
-msgid "Veranstaltungen"
+#. Description of the plugin
+msgid ""
+"WordPress plugin for embedding eveeno registration forms and upcoming events "
+"lists"
 msgstr ""
