@@ -19,19 +19,18 @@ var SCRIPT_VERSION = '1.1';
 
 
 /*
-* load resizer package and
-* search for all widgets and create iframes
+* search for all widgets and create the iframes
 */
 
 window.onload = function() {
-    console.log('script version ' + SCRIPT_VERSION);
-    evInitializeWidgets();
+	console.log('script version ' + SCRIPT_VERSION);
+	evInitializeWidgets();
 };
 
 function evInitializeWidgets() {
-    const widgets = document.querySelectorAll('.eveenoWidget');
-    console.log('evInitializeWidgets', widgets);
-    widgets.forEach(evCreateWidget);
+	const widgets = document.querySelectorAll('.eveenoWidget');
+	console.log('evInitializeWidgets', widgets);
+	widgets.forEach(evCreateWidget);
 };
 
 
@@ -41,132 +40,132 @@ function evInitializeWidgets() {
 
 function evCreateWidget(widget, i) {
 
-    console.log('evCreateWidget', i, widget);
+	console.log('evCreateWidget', i, widget);
 
-    var data = widget.dataset;
+	var data = widget.dataset;
 
-    var apikey = data.apikey;
-    var lang = data.lang;
-    var scope = data.scope;
-    var server = data.server;
-    var style = data.style;
-    var version = data.version || 'none';
+	var apikey = data.apikey;
+	var lang = data.lang;
+	var scope = data.scope;
+	var server = data.server;
+	var style = data.style;
+	var version = data.version || 'none';
+	
+	// add fallbacks for WP plugin version < 1.8
+	var type = data.show ? data.show : data.type;
+	var user = data.userid ? data.userid : data.user;
+	var event = data.eventid ? data.eventid : data.event;
+		
+	switch (server) {
+		case 'dev': var serverurl = 'http://localhost'; break;
+		case 'tst': var serverurl = 'https://tst.eveeno.com'; break;
+		case 'int': var serverurl = 'https://int.eveeno.com'; break;
+		default:    var serverurl = 'https://eveeno.com';
+	}
 
-    // add fallbacks for WP plugin version < 1.8
-    var type = data.show ? data.show : data.type;
-    var user = data.userid ? data.userid : data.user;
-    var event = data.eventid ? data.eventid : data.event;
+	// build widget url
+	
+	switch (type) {
+		
+		case 'booking':
+		
+			if (!event) { 
+				evWidgetShowError(widget, "Für das widget 'booking' ist der parameter 'event' Pflicht");
+				return;
+			}
+			var url = new URL(serverurl + '/' + event);
+			break;
 
-    switch (server) {
-        case 'dev': var serverurl = 'http://localhost'; break;
-        case 'tst': var serverurl = 'https://tst.eveeno.com'; break;
-        case 'int': var serverurl = 'https://int.eveeno.com'; break;
-        default:    var serverurl = 'https://eveeno.com';
-    }
+		case 'calendar':
 
-    // build widget url
+			if (!user) { 
+				evWidgetShowError(widget, "Für das widget 'calendar' ist der parameter 'user' Pflicht");
+				return;
+			}
+			var url = new URL(serverurl + '/de/event-cal/' + user);
+			break;
+		
+		default:
 
-    switch (type) {
+			evWidgetShowError(widget, "Der Widget-Typ 'type' fehlt oder ist falsch");
+			return;
+	};
 
-        case 'booking':
+	// check all possible widget parameters and forward them to the url
 
-            if (!event) {
-                evWidgetShowError(widget, "FÃ¼r das widget 'booking' ist der parameter 'event' Pflicht");
-                return;
-            }
-            var url = new URL(serverurl + '/' + event);
-            break;
+	if (apikey) url.searchParams.append('apikey', apikey);
+	if (event) url.searchParams.append('eventid', event);
+	if (lang) url.searchParams.append('lang', lang);
+	if (scope) url.searchParams.append('scope', scope);
+	if (style) url.searchParams.append('style', style);
+	if (user) url.searchParams.append('userid', user);
+	if (apikey) url.searchParams.append('apikey', apikey);
 
-        case 'calendar':
+	url.searchParams.append('format', 'embedded');
+	url.searchParams.append('version', SCRIPT_VERSION);
 
-            if (!user) {
-                evWidgetShowError(widget, "FÃ¼r das widget 'calendar' ist der parameter 'user' Pflicht");
-                return;
-            }
-            var url = new URL(serverurl + '/de/event-cal/' + user);
-            break;
+	// create iframe
+	
+	let widgetId = 'evFrame'+i;	
+	const iframe = document.createElement('iframe');
+	
+	iframe.setAttribute('id', widgetId);
+	iframe.setAttribute('src', url.href);
+	iframe.setAttribute('width', '100%');
+	iframe.setAttribute('minWidth', '100%');
+	iframe.setAttribute('scrolling', 'no');
+	iframe.setAttribute('frameborder', '0');
 
-        default:
+	widget.replaceWith(iframe);
 
-            evWidgetShowError(widget, "Der Widget-Typ 'type' fehlt oder ist falsch");
-            return;
-    };
+	// create resizer for the iframe
+	
+	iFrameResize({
+			
+		log: false,
+		checkOrigin: false,
+		heightCalculationMethod: 'taggedElement',
 
-    // check all possible widget parameters and forward them to the url
+		onMessage: function(data){
 
-    if (apikey) url.searchParams.append('apikey', apikey);
-    if (event) url.searchParams.append('eventid', event);
-    if (lang) url.searchParams.append('lang', lang);
-    if (scope) url.searchParams.append('scope', scope);
-    if (style) url.searchParams.append('style', style);
-    if (user) url.searchParams.append('userid', user);
-    if (apikey) url.searchParams.append('apikey', apikey);
+			console.log('Message received', data);
+			
+			// receive commands from the iframed page
+			
+			if (!data.message.cmd) return;
 
-    url.searchParams.append('format', 'embedded');
-    url.searchParams.append('version', SCRIPT_VERSION);
-
-    // create iframe
-
-    let widgetId = 'evFrame'+i;
-    const iframe = document.createElement('iframe');
-
-    iframe.setAttribute('id', widgetId);
-    iframe.setAttribute('src', url.href);
-    iframe.setAttribute('width', '100%');
-    iframe.setAttribute('minWidth', '100%');
-    iframe.setAttribute('scrolling', 'no');
-    iframe.setAttribute('frameborder', '0');
-
-    widget.replaceWith(iframe);
-
-    // create resizer for the iframe
-
-    iFrameResize({
-
-        log: false,
-        checkOrigin: false,
-        heightCalculationMethod: 'taggedElement',
-
-        onMessage: function(data){
-
-            console.log('Message received', data);
-
-            // receive commands from the iframed page
-
-            if (!data.message.cmd) return;
-
-            switch(data.message.cmd) {
-
-                case 'forceReload':
-                    location.reload(true);
-                    break;
-
-                case 'scrollTo':
-                    if (data.message.pos) {
-                        window.scrollTo({
-                            top: document.getElementById(widgetId).offsetTop + data.message.pos - 10,
-                            left: 0,
-                            behavior: "smooth",
-                        });
-                    }
-                    /*
-                    if (data.message.msg) {
-                        setTimeout(function() {
-                            alert(data.message.msg);
-                        }, 10); // TBD: replace setTimeout with a better solution
-                    }
-                    */
-                    break;
-            }
-        },
-
-    },'#'+widgetId);
+			switch(data.message.cmd) {
+				
+				case 'forceReload': 
+					location.reload(true);
+					break;
+					
+				case 'scrollTo':
+					if (data.message.pos) {
+						window.scrollTo({
+							top: document.getElementById(widgetId).offsetTop + data.message.pos - 10,
+							left: 0,
+							behavior: "smooth",
+						});
+					}
+					/*
+					if (data.message.msg) {
+						setTimeout(function() {
+							alert(data.message.msg);
+						}, 10); // TBD: replace setTimeout with a better solution
+					}
+					*/
+					break;
+			}
+		},
+		
+	},'#'+widgetId);
 }
 
 function evWidgetShowError(widget, msg) {
-    html = 'Fehler in diesem Widget, bitte Ã¼berprÃ¼fen Sie die Parameter:';
-    html += '<br><br>';
-    html += msg;
-    widget.innerHTML = html;
-    widget.setAttribute('style', 'background-color:#FAEAE9; color: #D9534F; text-align: center; padding: 20px;');
+	html = 'Fehler in diesem Widget, bitte überprüfen Sie die Parameter:';
+	html += '<br><br>';
+	html += msg;
+	widget.innerHTML = html;
+	widget.setAttribute('style', 'background-color:#FAEAE9; color: #D9534F; text-align: center; padding: 20px;');	
 }
