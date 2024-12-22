@@ -12,25 +12,26 @@ WordPress plugin for embedding eveeno registration forms and upcoming events lis
 == Description ==
 
 Embed registration forms and event lists from [eveeno.de](https://eveeno.com) in your WordPress site simply by adding a shortcode.
-All you need is your event id (for embedding a registration form), your user id (for embedding an event list) and eventually the width and height. 
-You will find the event id and the user id in your eveeno backend in Event-Einstellungen > Widgets.
+All you need is your event id (for embedding a registration form), your user id (for embedding an event list) and eventually the width and height.
+
+You'll find the event and user numbers in your Eveeno backend: Event-Einstellungen > Widgets.
 
 = Examples =
 Embedding a registration form:
 `
-[eveeno style="form" event="123456789" width="95%" height="1000px"]
+[eveeno type="booking" event="123456789"]
 `
 Embedding an event list as a table:
 `
-[eveeno style="table" user="1234" width="95%" height="400px"]
+[eveeno type="calendar" style="table" user="1234"]
 `
 Embedding an event list in grid view:
 `
-[eveeno style="grid" user="1234" width="95%" height="400px"]
+[eveeno type="calendar" style="grid" user="1234"]
 `
 Embedding a short event list:
 `
-[eveeno style="list" user="1234" width="95%" height="400px"]
+[eveeno type="calendar" style="list" user="1234"]
 `
 = Additional Shortcode Parameters =
 `

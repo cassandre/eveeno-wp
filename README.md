@@ -7,22 +7,25 @@
 
 WordPress plugin for embedding <a href="https://eveeno.com">eveeno.de</a> registration forms and upcoming events lists.
 
+> [!TIP]
+> You'll find the event and user numbers in your Eveeno backend: Event-Einstellungen > Widgets.    
+
 ## Shortcode Registration Form
 ```
-[eveeno style="form" event="123456789"]
+[eveeno type="booking" event="123456789"]   
 ```
 ## Shortcodes Events List
 ### Table Style:
 ```
-[eveeno style="table" user="1234"]
+[eveeno type="calendar" style="table" user="1234"]
 ```
 ### Grid Style:
 ```
-[eveeno style="grid" user="1234"]
+[eveeno type="calendar" style="grid" user="1234"]
 ```
 ### Short List (e.g. in Sidebar):
 ```
-[eveeno style="list" user="1234"]
+[eveeno type="calendar" style="list" user="1234"]
 ```
 ## Other Shortcode Attributes:
 ```
@@ -34,11 +37,3 @@ sort="" [date (default) | name]
 scope="" [all | private | public (default)]
 apikey=""
 ```
-
-You'll find the IDs in your Eveeno backend:  Event-Einstellungen > Widgets.
-
-#### General Information: ####
-Author: Barbara Bothe<br>
-Website: <a href="https://barbara-bothe.de">https://barbara-bothe.de</a><br>
-Licence: <a href="https://www.gnu.org/licenses/gpl">GNU General Public License, Version 3.0</a> (GNUGPLv3.0)<br>
-WordPress Plugin Directory: <a href="https://wordpress.org/plugins/eveeno">https://wordpress.org/plugins/eveeno</a>
