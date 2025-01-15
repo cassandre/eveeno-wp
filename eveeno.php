@@ -2,7 +2,7 @@
 /*
 Plugin Name:  Eveeno
 Plugin URI:   https://github.com/cassandre/eveeno-wp
-Version:      2.0
+Version:      2.1
 Description:  WordPress plugin for embedding eveeno registration forms and upcoming events lists
 Author:       Barbara Bothe
 Author URI:   https://barbara-bothe.de
@@ -25,7 +25,7 @@ add_action('plugins_loaded', __NAMESPACE__ . '\loaded');
 
 const EVEENO_PHP_VERSION = '8.0';
 const EVEENO_WP_VERSION = '6.2';
-const EVEENO_PLUGIN_VERSION = '2.0';
+const EVEENO_PLUGIN_VERSION = '2.1';
 
 function systemRequirements(): string {
     global $wp_version;

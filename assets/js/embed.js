@@ -3,10 +3,10 @@
 * uses the iframeResizer tool to adapt iframe size to the content
 * and to communicate between iframe parent and child
 *
-* last change: 2024-12-22
+* last change: 2025-01-15
 */
 
-var SCRIPT_VERSION = '1.1';
+var SCRIPT_VERSION = '1.2';
 
 
 /*! iFrame Resizer (iframeSizer.min.js ) - v4.3.9 - 2023-11-10
@@ -23,7 +23,7 @@ var SCRIPT_VERSION = '1.1';
 */
 
 window.onload = function() {
-	//logconsole.log('script version ' + SCRIPT_VERSION);
+	//console.log('script version ' + SCRIPT_VERSION);
 	evInitializeWidgets();
 };
 
@@ -43,35 +43,38 @@ function evCreateWidget(widget, i) {
 	//console.log('evCreateWidget', i, widget);
 
 	// read parameters
-	
+
 	var data = widget.dataset;
 
 	var apikey = data.apikey;
 	var event = data.event;
 	var lang = data.lang;
+	var notterm = data.notterm;
+	var period = data.period;
 	var scope = data.scope;
 	var server = data.server;
 	var style = data.style;
+	var term = data.term;
 	var type = data.type;
 	var user = data.user;
 	var version = data.version || 'none';
-	var wp_plugin_version = data.wp_plugin_version || 'none';
-	
+	var wppluginversion = data.wppluginversion || 'none';
+
 	// overwrite some by fallbacks for WP plugin version < 1.8
-	
+
 	if (data.show) {
 		if (data.show == 'form') {
 			type = 'booking';
 		}
 		else if (data.show == 'grid' || data.show == 'table' || data.show == 'list') {
-			type = 'booking'; style = data.show;
+			type = 'calendar'; style = data.show;
 		}
 	}
 	if (data.eventid) event = data.eventid;
 	if (data.userid) user = data.userid;
-		
+
 	// build widget url
-	
+
 	switch (server) {
 		case 'dev': var serverurl = 'http://localhost'; break;
 		case 'tst': var serverurl = 'https://tst.eveeno.com'; break;
@@ -80,10 +83,10 @@ function evCreateWidget(widget, i) {
 	}
 
 	switch (type) {
-		
+
 		case 'booking':
-		
-			if (!event) { 
+
+			if (!event) {
 				evWidgetShowError(widget, "Für das widget 'booking' ist der parameter 'event' Pflicht");
 				return;
 			}
@@ -92,13 +95,13 @@ function evCreateWidget(widget, i) {
 
 		case 'calendar':
 
-			if (!user) { 
+			if (!user) {
 				evWidgetShowError(widget, "Für das widget 'calendar' ist der parameter 'user' Pflicht");
 				return;
 			}
 			var url = new URL(serverurl + '/de/event-cal/' + user);
 			break;
-		
+
 		default:
 
 			evWidgetShowError(widget, "Der Widget-Typ 'type' fehlt oder ist falsch");
@@ -110,21 +113,23 @@ function evCreateWidget(widget, i) {
 	if (apikey) url.searchParams.append('apikey', apikey);
 	if (event) url.searchParams.append('eventid', event);
 	if (lang) url.searchParams.append('lang', lang);
+	if (notterm) url.searchParams.append('notterm', notterm);
+	if (period) url.searchParams.append('period', period);
 	if (scope) url.searchParams.append('scope', scope);
 	if (style) url.searchParams.append('style', style);
+	if (term) url.searchParams.append('term', term);
 	if (user) url.searchParams.append('userid', user);
-	if (apikey) url.searchParams.append('apikey', apikey);
 
 	url.searchParams.append('format', 'embedded');
 	url.searchParams.append('version', SCRIPT_VERSION);
-	url.searchParams.append('wp_plugin_version', wp_plugin_version);
+	url.searchParams.append('wppluginversion', wppluginversion);
 
 
 	// create iframe
-	
-	let widgetId = 'evFrame'+i;	
+
+	let widgetId = 'evFrame'+i;
 	const iframe = document.createElement('iframe');
-	
+
 	iframe.setAttribute('id', widgetId);
 	iframe.setAttribute('src', url.href);
 	iframe.setAttribute('width', '100%');
@@ -135,9 +140,9 @@ function evCreateWidget(widget, i) {
 	widget.replaceWith(iframe);
 
 	// create resizer for the iframe
-	
+
 	iFrameResize({
-			
+
 		log: false,
 		checkOrigin: false,
 		heightCalculationMethod: 'taggedElement',
@@ -145,36 +150,40 @@ function evCreateWidget(widget, i) {
 		onMessage: function(data){
 
 			//console.log('Message received', data);
-			
+
 			// receive commands from the iframed page
-			
+
 			if (!data.message.cmd) return;
 
 			switch(data.message.cmd) {
-				
-				case 'forceReload': 
+
+				case 'forceReload':
+
 					location.reload(true);
 					break;
-					
+
 				case 'scrollTo':
+
 					if (data.message.pos) {
+
+						// window.pageYOffset   											=> whole page's scroll offset ( page is at 500px scrolled down )
+						// document.getElementById(widgetId).getBoundingClientRect().top	=> current element's top relative to viewport
+						//																	   ( form's top is hidden as currently you are watching bottom part of form : top is at -200px relative to viewport )
+						// above 1 + 2  =>  500 + -200 => 300								=> top position of iframe in given page
+						// 																	   ( top of iframe is at 300px relative to whole page )
+
+						// add to this : given field's pos from data.message.pos and it'll scroll to `iframe + given field`
+
 						window.scrollTo({
-							top: document.getElementById(widgetId).offsetTop + data.message.pos - 10,
+							top: ( window.pageYOffset + document.getElementById(widgetId).getBoundingClientRect().top ) + data.message.pos - 10,
 							left: 0,
 							behavior: "smooth",
 						});
 					}
-					/*
-					if (data.message.msg) {
-						setTimeout(function() {
-							alert(data.message.msg);
-						}, 10); // TBD: replace setTimeout with a better solution
-					}
-					*/
 					break;
 			}
 		},
-		
+
 	},'#'+widgetId);
 }
 
@@ -183,5 +192,5 @@ function evWidgetShowError(widget, msg) {
 	html += '<br><br>';
 	html += msg;
 	widget.innerHTML = html;
-	widget.setAttribute('style', 'background-color:#FAEAE9; color: #D9534F; text-align: center; padding: 20px;');	
+	widget.setAttribute('style', 'background-color:#FAEAE9; color: #D9534F; text-align: center; padding: 20px;');
 }

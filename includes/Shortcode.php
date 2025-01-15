@@ -11,30 +11,16 @@ class Shortcode {
     }
     function shortcodeOutput($atts) {
 
-        $aParam = ['data-wp-plugin-version="' . EVEENO_PLUGIN_VERSION . '"'];
+        $aParam = ['data-wppluginversion="' . EVEENO_PLUGIN_VERSION . '"'];
         $output = '';
 
         foreach ($atts as $k => $v) {
-            if ($v == '')
-                continue;
-            if ($k == 'show') {
-                switch ($v) {
-                    case 'form':
-                        $aParam[] = 'data-type="booking"';
-                        break;
-                    case 'table':
-                    case 'grid':
-                    case 'list':
-                        $aParam[] = 'data-type="calendar"';
-                        $aParam[] = 'data-style="' . esc_attr($v) . '"';
-                        break;
-                    default:
-                        $aParam[] = 'data-' . esc_attr($k) . '="' . esc_attr($v) . '"';
-                }
-            } else {
-                $aParam[] = 'data-' . esc_attr($k) . '="' . esc_attr($v) . '"';
-            }
+
+            if ($v == '') continue;
+
+            $aParam[] = 'data-' . esc_attr($k) . '="' . esc_attr($v) . '"';
         }
+
         $sParam = implode(' ', $aParam);
 
         $output .= ' <div class="eveenoWidget" ' . $sParam . '></div>';
