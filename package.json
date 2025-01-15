@@ -1,6 +1,6 @@
 {
   "name": "eveeno",
-  "version": "2.0",
+  "version": "2.1",
   "description": "WordPress plugin for embedding eveeno registration forms and upcoming events lists",
   "main": "eveeno.php",
   "textdomain": "eveeno",

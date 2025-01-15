@@ -3,7 +3,7 @@ Contributors:       babo2015
 Tags:               event, registration, form, conference,
 Requires at least:  6.2
 Tested up to:       6.7
-Stable tag:         2.0
+Stable tag:         2.1
 License:            GPLv3 or later
 License URI:        https://www.gnu.org/licenses/gpl-3.0.html
 
